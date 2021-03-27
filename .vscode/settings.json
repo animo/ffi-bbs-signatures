@@ -1,0 +1,11 @@
+{
+  "python.formatting.provider": "black",
+  "python.pythonPath": "wrappers/python/.venv/bin/python",
+  "vscode-pets.petSize": "large",
+  "python.autoComplete.extraPaths": [
+    "./wrappers/python"
+  ],
+  "python.analysis.extraPaths": [
+    "./wrappers/python"
+  ]
+}
