@@ -31,6 +31,7 @@ PACKAGE_NAME = "ursa_bbs_signatures"
 
 LIB: CDLL = None
 
+
 def wrap_native_func(
     function_name: str,
     *,
@@ -64,8 +65,10 @@ def _load_library(lib_name: str):
         lib_suffix = lib_suffix_mapping.get(os_name, ".so")
 
         lib_path = os.path.join(
-            os.path.abspath("."), PACKAGE_NAME, f"{lib_prefix}{lib_name}{lib_suffix}"
+            os.path.abspath(
+                "."), PACKAGE_NAME, f"{lib_prefix}{lib_name}{lib_suffix}"
         )
+        print("LIB PATH", lib_path,  os.path.abspath("."))
         return CDLL(lib_path)
     except KeyError:
         LOGGER.debug("Unknown platform for shared library")
