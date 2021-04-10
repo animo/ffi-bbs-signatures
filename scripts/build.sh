@@ -32,7 +32,7 @@ WINDOWS)
   # rustup target install i686-pc-windows-gnu x86_64-pc-windows-gnu
   mkdir -p $OUTPUT_LOCATION\windows
   cargo build --release
-  cp .\target\release\bbs.dll $OUTPUT_LOCATION\windows
+  cp .\\target\\release\\bbs.dll $OUTPUT_LOCATION\\windows
   ;;
 LINUX)
   mkdir -p $OUTPUT_LOCATION/linux
