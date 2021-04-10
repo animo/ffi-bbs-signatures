@@ -33,7 +33,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - run: yarn build:${{matrix.plat-name-simple}}
+      - run: |
+        yarn build:${{matrix.plat-name-simple}}
+        ls ./out/${{matrix.plat-name-simple}}
       - uses: actions/upload-artifact@v2
         with:
           name: ${{matrix.plat-name-simple}}
