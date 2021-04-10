@@ -39,38 +39,38 @@ jobs:
           name: ${{matrix.plat-name-simple}}
           path: ./out/${{matrix.plat-name-simple}}/*
 
-  test_python_wrapper:
-    name: Test Python Wrapper
-    needs: [build_ursa]
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.6, 3.7, 3.8, 3.9]
-        include:
-          - os: ubuntu-latest
-            plat-name-simple: linux
-            plat-name: manylinux2014_x86_64
-            target-name: libbbs.so
-          - os: macos-latest
-            plat-name-simple: macos
-            plat-name: macosx_10_9_x86_64 # macosx_10_9_universal2
-            target-name: libbbs.dylib
-          - os: windows-latest
-            plat-name-simple: windows
-            plat-name: win_amd64
-            target-name: bbs.dll
+  # test_python_wrapper:
+  #   name: Test Python Wrapper
+  #   needs: [build_ursa]
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, macos-latest, windows-latest]
+  #       python-version: [3.6, 3.7, 3.8, 3.9]
+  #       include:
+  #         - os: ubuntu-latest
+  #           plat-name-simple: linux
+  #           plat-name: manylinux2014_x86_64
+  #           target-name: libbbs.so
+  #         - os: macos-latest
+  #           plat-name-simple: macos
+  #           plat-name: macosx_10_9_x86_64 # macosx_10_9_universal2
+  #           target-name: libbbs.dylib
+  #         - os: windows-latest
+  #           plat-name-simple: windows
+  #           plat-name: win_amd64
+  #           target-name: bbs.dll
     
-    runs-on: ${{ matrix.os }}
+  #   runs-on: ${{ matrix.os }}
         
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - uses: actions/download-artifact@v2
-        with:
-          name: ${{matrix.plat-name-simple}}
-          path: ./wrappers/python/ursa_bbs_signatures
-      - name: Run tests
-        run: python -m unittest discover
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Set up Python ${{ matrix.python-version }}
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: ${{ matrix.python-version }}
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: ${{matrix.plat-name-simple}}
+  #         path: ./wrappers/python/ursa_bbs_signatures
+  #     - name: Run tests
+  #       run: python -m unittest discover
