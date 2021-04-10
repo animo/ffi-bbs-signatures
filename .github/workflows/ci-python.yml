@@ -33,12 +33,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - if: "runner.os == 'Windows'"
+      - if: "matrix.os == 'windows-latest'"
         run: |
           mkdir .\out\windows
           cargo build --release
           cp .\target\release\bbs.dll .\out\windows
-      - if: "runner.os != 'Windows'"
+      - if: "matrix.os != 'windows-latest'"
         run: yarn build:${{matrix.plat-name-simple}}
       - uses: actions/upload-artifact@v2
         with:
