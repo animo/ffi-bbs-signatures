@@ -125,8 +125,6 @@ jobs:
         shell: sh
         run: |
           python setup.py bdist_wheel --python-tag=py3 --plat-name=${{ matrix.plat-name }}
-          pip install dist/*
-          python -m demo.test
         working-directory: wrappers/python
 
       - if: "runner.os == 'Linux'"
@@ -139,11 +137,11 @@ jobs:
           name: python-${{ runner.os }}
           path: ./wrappers/python/dist/*
 
-      - if: |
-          (github.event_name == 'release' ||
-            (github.event_name == 'workflow_dispatch' &&
-              github.event.inputs.publish == 'true'))
-        name: Publish python package
+      # - if: |
+      #     (github.event_name == 'release' ||
+      #       (github.event_name == 'workflow_dispatch' &&
+      #         github.event.inputs.publish == 'true'))
+      - name: Publish python package
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
