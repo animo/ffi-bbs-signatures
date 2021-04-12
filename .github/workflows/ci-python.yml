@@ -18,16 +18,13 @@ jobs:
         include:
           - os: ubuntu-latest
             plat-name-simple: linux
-            plat-name: manylinux2014_x86_64
-            target-name: libbbs.so
+            target-path: darwin-x86_64
           - os: macos-latest
             plat-name-simple: macos
-            plat-name: macosx_10_9_x86_64 # macosx_10_9_universal2
-            target-name: libbbs.dylib
+            target-path: ./out/macos/darwin-x86_64
           - os: windows-latest
             plat-name-simple: windows
-            plat-name: win_amd64
-            target-name: bbs.dll
+            target-path: ./out/windows
 
     runs-on: ${{ matrix.os }}
 
@@ -43,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: ${{matrix.plat-name-simple}}
-          path: ./out/${{matrix.plat-name-simple}}/*
+          path: ${{matrix.target-path}}/*
 
   test_python_wrapper:
     name: Test Python Wrapper
@@ -55,15 +52,12 @@ jobs:
         include:
           - os: ubuntu-latest
             plat-name-simple: linux
-            plat-name: manylinux2014_x86_64
             target-name: libbbs.so
           - os: macos-latest
             plat-name-simple: macos
-            plat-name: macosx_10_9_x86_64 # macosx_10_9_universal2
             target-name: libbbs.dylib
           - os: windows-latest
             plat-name-simple: windows
-            plat-name: win_amd64
             target-name: bbs.dll
     
     runs-on: ${{ matrix.os }}
