@@ -82,7 +82,7 @@ jobs:
         run: python -m unittest discover
 
   build-py:
-    name: Build Python
+    name: Build and Publish Python Wrapper
     needs: [test_python_wrapper]
 
     strategy:
@@ -115,11 +115,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine auditwheel
+
       - name: Download library artifacts
         uses: actions/download-artifact@v2
         with:
           name: ${{matrix.plat-name-simple}}
           path: ./wrappers/python/ursa_bbs_signatures
+          
 
       - name: Build and test python package
         shell: sh
@@ -136,6 +138,7 @@ jobs:
         with:
           name: python-${{ runner.os }}
           path: ./wrappers/python/dist/*
+          if-no-files-found: error
 
       # - if: |
       #     (github.event_name == 'release' ||
