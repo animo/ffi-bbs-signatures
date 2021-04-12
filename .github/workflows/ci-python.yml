@@ -145,10 +145,10 @@ jobs:
           (github.event_name == 'release' ||
             (github.event_name == 'workflow_dispatch' &&
               github.event.inputs.publish == 'true'))
-      - name: Publish python package
+        name: Publish python package
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
-          twine upload --repository testpypi --skip-existing dist/*
+          twine upload --skip-existing dist/*
         working-directory: ./wrappers/python
