@@ -18,7 +18,7 @@ jobs:
         include:
           - os: ubuntu-latest
             plat-name-simple: linux
-            target-path: darwin-x86_64
+            target-path: ./out/linux
           - os: macos-latest
             plat-name-simple: macos
             target-path: ./out/macos/darwin-x86_64
