@@ -115,12 +115,8 @@ jobs:
         with:
           name: ${{matrix.plat-name-simple}}
           path: ./wrappers/python/ursa_bbs_signatures
-
-      - name: debug
-        shell: sh
-        run: ls ./wrappers/python/ursa_bbs_signatures
           
-      - name: Build and test python package
+      - name: Build python wheels
         shell: sh
         run: |
           python setup.py bdist_wheel --python-tag=py3 --plat-name=${{ matrix.plat-name }}
