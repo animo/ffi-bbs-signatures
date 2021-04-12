@@ -121,8 +121,11 @@ jobs:
         with:
           name: ${{matrix.plat-name-simple}}
           path: ./wrappers/python/ursa_bbs_signatures
-          
 
+      - name: debug
+        shell: sh
+        run: ls ./wrappers/python/ursa_bbs_signatures
+          
       - name: Build and test python package
         shell: sh
         run: |
