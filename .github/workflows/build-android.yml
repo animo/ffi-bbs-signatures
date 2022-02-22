@@ -1,0 +1,40 @@
+name: 'testing-android-setup'
+
+on: [push]
+
+jobs:
+  build_android_arm64:
+    name: build android library for arm64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: -Z multitarget --release --package indy-vdr --target aarch64-linux-android --target arm-linux-androideabi --target armv7-linux-androideabi --target i686-linux-android-eabi --target x86_64-linux-android
+      - name: Save aarch64
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-aarch64
+          path: target/aarch64-linux-android/release/libbbs.a
+      - name: Save arm
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-arm
+          path: target/arm-linux-androideabi/release/libbbs.a
+      - name: Save armv7
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-armv7
+          path: target/armv7-linux-androideabi/release/libbbs.a
+      - name: Save x86
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-i686
+          path: target/i686-linux-android/release/libbbs.a
+      - name: Save x86_64
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-x86_64
+          path: target/x86_64-linux-android/release/libbbs.a
