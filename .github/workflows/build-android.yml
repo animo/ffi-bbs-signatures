@@ -12,7 +12,27 @@ jobs:
         with:
           use-cross: true
           command: build
-          args: -Z multitarget --release --package indy-vdr --target aarch64-linux-android --target arm-linux-androideabi --target armv7-linux-androideabi --target i686-linux-android-eabi --target x86_64-linux-android
+          args: --release --target aarch64-linux-android
+      - uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --release --target arm-linux-androideabi
+      - uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --release --target armv7-linux-androideabi
+      - uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --release --target i686-linux-android-eabi
+      - uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --release --target x86_64-linux-android
       - name: Save aarch64
         uses: actions/upload-artifact@v2
         with:
