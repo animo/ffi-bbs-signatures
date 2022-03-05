@@ -7,5 +7,5 @@ rustup install nightly
 rustup default nightly
 cargo install cargo-expand
 cargo install --force cbindgen
-cbindgen --config cbindgen.toml --crate ffi-bbs-signatures --output include/bbs.h
+cbindgen --config cbindgen.c.toml --crate ffi-bbs-signatures --output include/bbs=cp.h
 rustup default stable

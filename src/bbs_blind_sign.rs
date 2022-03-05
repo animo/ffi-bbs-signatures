@@ -74,16 +74,16 @@ pub extern "C" fn bbs_blind_sign_context_finish(
         handle,
         move |ctx| -> Result<ByteBuffer, BbsFfiError> {
             if ctx.commitment.is_none() {
-                return Err(BbsFfiError::new("Commitment must be set"))
+                return Err(BbsFfiError::new("Commitment must be set"));
             }
             if ctx.secret_key.is_none() {
-                return Err(BbsFfiError::new("Secret Key must be set"))
+                return Err(BbsFfiError::new("Secret Key must be set"));
             }
             if ctx.public_key.is_none() {
-                return Err(BbsFfiError::new("Public Key must be set"))
+                return Err(BbsFfiError::new("Public Key must be set"));
             }
             if ctx.messages.is_empty() {
-                return Err(BbsFfiError::new("Messages cannot be empty"))
+                return Err(BbsFfiError::new("Messages cannot be empty"));
             }
             let commitment = ctx.commitment.as_ref().unwrap();
             let sk = ctx.secret_key.as_ref().unwrap();
@@ -97,8 +97,8 @@ pub extern "C" fn bbs_blind_sign_context_finish(
 
     if err.get_code().is_success() {
         *blinded_signature = res;
-        if let Err(e) = BLIND_SIGN_CONTEXT.remove_u64(handle) { 
-            *err = ExternError::new_error(ErrorCode::new(1), format!("{:?}", e)) 
+        if let Err(e) = BLIND_SIGN_CONTEXT.remove_u64(handle) {
+            *err = ExternError::new_error(ErrorCode::new(1), format!("{:?}", e))
         }
     }
     err.get_code().code()
