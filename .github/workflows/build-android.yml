@@ -1,6 +1,12 @@
-name: "build-library-for-android"
+name: build-android 
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 env: 
   LIB_NAME: bbs
