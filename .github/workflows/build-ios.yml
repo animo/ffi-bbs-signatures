@@ -43,11 +43,11 @@ jobs:
       - run: >
           lipo -create aarch64-apple-ios-sim/lib${{ env.LIB_NAME }}.a \
                        x86_64-apple-ios/lib${{ env.LIB_NAME }}.a \
-               -output sim.a
+               -output lib${{ env.LIB_NAME }}.a
       - run: >
           xcodebuild -create-xcframework \
             -library aarch64-apple-ios/lib${{ env.LIB_NAME }}.a -headers ${{ env.HEADER_FILE }} \
-            -library sim.a                                      -headers ${{ env.HEADER_FILE }} \
+            -library lib${{ env.LIB_NAME }}.a                   -headers ${{ env.HEADER_FILE }} \
             -output ${{ env.LIB_NAME }}.xcframework
       - name: Save xcframework
         uses: actions/upload-artifact@v3
